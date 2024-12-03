@@ -5,12 +5,16 @@
 :SubClient:
 
 rectangle system {
-(eat)
-(login utente) as lu
-(crea profilo) as cp
-(jump)
-(estrai chiavi)
-(open the door) as ot
+    (eat)
+    usecase lu as "
+    login utente
+    --
+    E.P.: se account non esiste
+    "
+    (crea profilo) as cp
+    (jump)
+    (estrai chiavi)
+    (open the door) as ot
 }
 
 Client <|-- SubClient
@@ -19,6 +23,8 @@ a1 -> ot
 a2 -- ot
 a2 -- lu
 lu <.. cp : <<extend>>
+
+
 
 
 @enduml

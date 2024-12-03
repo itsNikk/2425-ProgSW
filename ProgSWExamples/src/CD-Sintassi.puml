@@ -1,0 +1,26 @@
+@startuml
+class NomeClasse1 {
+    -campo1:int
+    -metodoPrivato():String
+    +metodoPubblico():int
+    +metodoConParams(x:String):double
+}
+
+class Classe2 {
+    {static} +metodo()
+}
+
+abstract class AbsClass {
+     {abstract} +method()
+}
+
+class C {
+    -x:Classe2
+}
+
+NomeClasse1 <|-- Classe2
+AbsClass <|- C
+
+C "1" --> "0..1" Classe2
+
+@enduml
