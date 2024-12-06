@@ -1,0 +1,23 @@
+@startuml
+' SADKJFGBKSJFB
+:luca: as lc
+:padre:
+
+(vola) as uc1
+(dormire) as uc2
+(login) as lg
+(registrazione profilo) as rp
+lc - uc1
+lc --> uc2
+
+:padre: <|-- lc
+
+lg <.. rp : <<extend>>
+
+usecase expExample as "
+definisione
+--
+E.P.: lalal
+"
+
+@enduml
