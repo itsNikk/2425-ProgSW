@@ -15,7 +15,7 @@ lc --> uc2
 lg <.. rp : <<extend>>
 
 usecase expExample as "
-definisione
+use case  che ha EP
 --
 E.P.: lalal
 "
