@@ -1,0 +1,14 @@
+@startuml
+class Libro {
+    - String titolo
+    - String autore
+    - String ISBN
+}
+
+class Utente {
+    - String nome
+    - String email
+}
+
+Utente "1" --> "0..*" Libro : prendeInPrestito
+@enduml

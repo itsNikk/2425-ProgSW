@@ -1,0 +1,11 @@
+@startuml
+class Automobile {
+    - String marca
+    - String modello
+    - int anno
+
+    + void accendiMotore()
+    + void spegniMotore()
+    - double calcolaValoreAttuale()
+}
+@enduml
