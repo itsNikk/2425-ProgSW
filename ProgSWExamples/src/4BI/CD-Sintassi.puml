@@ -23,4 +23,21 @@ AbsClass <|- C
 
 C "1" --> "0..1" Classe2
 
+'Aggregrazioni
+class Parte{}
+class Tutto{}
+
+Parte --o Tutto : contains
+
+'Composizioni
+class X{}
+class Y{}
+
+X --* y : Aggrega
+
+' interfacce
+interface interfaccia{
+}
+
+X ..> interfaccia
 @enduml
