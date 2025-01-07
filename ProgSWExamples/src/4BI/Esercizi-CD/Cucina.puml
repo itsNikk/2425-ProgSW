@@ -1,0 +1,64 @@
+@startuml
+
+class Ristorante {
+    - menu : Menu
+    -cuochi:Cuoco[]
+}
+
+class Menu{
+    -piatti : Piatto[]
+}
+
+abstract class Piatto {
+    - descrizione : String
+    +{abstract} prepara() : void
+}
+
+class Pasta {
+    -sugo:Sugo
+    +prepara() : void
+}
+
+class Sugo {
+    +prepara() : void
+}
+
+class SecondoPiatto {
+    +prepara() : void
+}
+
+class Contorni {
+    +prepara() : void
+}
+
+class Dolce {
+    +prepara() : void
+}
+
+class Cuoco {
+    +preparaPiatto(piatto:Piatto) :void
+}
+
+class Amartriciana {
+
+}
+
+class Main{
+    +{static}main:void
+}
+
+Cuoco "1" ..> "1..*" Piatto : chiama
+Main ..> Ristorante : crea
+Main ..> Cuoco : crea
+Main ..> Piatto : crea
+Cuoco "1..*"<-- "1" Ristorante
+SecondoPiatto --|> Piatto
+Dolce --|> Piatto
+Contorni --|> Piatto
+Pasta "1" --> "1" Sugo :è condita
+Sugo --|> Piatto
+Ristorante "1" --> "1..*" Menu
+Menu "1" --> "1..*"Piatto
+Pasta --|> Piatto
+
+@enduml
