@@ -1,0 +1,25 @@
+@startuml
+:presidente: as pres
+:arbitro: as arb
+:FIGC: as f
+:Allenatore: as all
+
+(Gestione calcio mercato) as gcm
+(Acquisto calciatori)
+(Vendita calciatori)
+
+' UC Presidente
+(Acquisto calciatori) ..> gcm : <<extend>>
+(Vendita calciatori) ..> gcm : <<extend>>
+pres -- gcm : effettua
+
+' UC FIGC
+f -- (Designazione arbitri) : effettua
+f -- (Definizione calendario) : effettua
+f -- (Stampa classifica e schedine) : stampa
+(Stampa classifica e schedine) ..> (Gestione Archivio partite) : <<include>>
+
+' UC Arbitro
+arb -- (Gestione Archivio partite) : memorizza risultato partita
+
+@enduml
