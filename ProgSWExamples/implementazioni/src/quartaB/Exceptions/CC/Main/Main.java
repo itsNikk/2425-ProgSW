@@ -5,7 +5,6 @@ import quartaB.Exceptions.CC.CCManagement.CifraNegativaException;
 import quartaB.Exceptions.CC.CCManagement.SaldoInsufficienteException;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

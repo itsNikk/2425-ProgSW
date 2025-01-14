@@ -20,6 +20,7 @@ public class CC {
         if (amount < 0) throw new CifraNegativaException("Inerire cifra positiva per eseguire prelievo");
         this.saldo += amount;
     }
+
     public String getNomeCorrentista() {
         return nomeCorrentista;
     }
