@@ -20,6 +20,7 @@ public class Main {
             // Prenotazione con biglietto scaduto
             sistema.prenotaViaggio("Fermata B", "Fermata C", true);
         } catch (FermataNonTrovataException e) {
+            //system err= printa in rosso in console
             System.err.println("Errore Fermata: " + e.getMessage());
         } catch (BigliettoScadutoException e) {
             System.err.println("Errore Biglietto: " + e.getMessage());
