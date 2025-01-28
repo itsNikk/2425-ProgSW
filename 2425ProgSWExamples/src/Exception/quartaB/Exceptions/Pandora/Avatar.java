@@ -1,7 +1,5 @@
 package Exception.quartaB.Exceptions.Pandora;
 
-import java.sql.SQLOutput;
-
 class Avatar {
     private String nome;
     private String arma;
