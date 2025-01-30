@@ -1,0 +1,20 @@
+@startuml
+actor Utente
+participant "E-commerce" as Shop
+participant "Gateway Pagamento" as Payment
+participant "Magazzino" as Warehouse
+
+Utente -> Shop: Seleziona prodotto
+Shop -> Utente: Aggiunto al carrello
+Utente -> Shop: Procede al checkout
+Shop -> Payment: Invia dettagli pagamento
+alt Pagamento riuscito
+    Payment -> Shop: Conferma pagamento
+    Shop -> Warehouse: Verifica disponibilità
+    Warehouse -> Shop: Confermato
+    Shop -> Utente: Ordine confermato
+else Pagamento fallito
+    Payment -> Shop: Errore pagamento
+    Shop -> Utente: Notifica errore
+end
+@enduml

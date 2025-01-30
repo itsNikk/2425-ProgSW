@@ -1,0 +1,14 @@
+@startuml
+[*] --> Idle
+Idle --> InserimentoCarta : Inserisci carta
+InserimentoCarta --> InserimentoPIN : Carta letta
+InserimentoPIN --> Idle : PIN errato
+InserimentoPIN --> SelezioneOperazione : PIN corretto
+SelezioneOperazione --> Prelievo : Scelta prelievo
+SelezioneOperazione --> Versamento : Scelta versamento
+SelezioneOperazione --> ControlloSaldo : Scelta saldo
+Prelievo --> EspulsioneCarta : Operazione completata
+Versamento --> EspulsioneCarta : Operazione completata
+ControlloSaldo --> EspulsioneCarta : Operazione completata
+EspulsioneCarta --> Idle : Carta ritirata
+@enduml

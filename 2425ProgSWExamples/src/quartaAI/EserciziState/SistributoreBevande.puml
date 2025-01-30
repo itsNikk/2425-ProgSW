@@ -1,0 +1,8 @@
+@startuml
+[*] --> Attesa
+Attesa --> Credito : Inserisci monete
+Credito --> Erogazione : Seleziona bevanda
+Erogazione --> Resto : Se resto > 0
+Erogazione --> Attesa : Se resto = 0
+Resto --> Attesa : Rilascio resto
+@enduml

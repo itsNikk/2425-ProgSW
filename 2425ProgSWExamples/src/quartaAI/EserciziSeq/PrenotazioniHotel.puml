@@ -1,0 +1,27 @@
+@startuml
+actor Utente
+participant "Sito Hotel" as Hotel
+participant "Database Prenotazioni" as DB
+participant "Gateway Pagamento" as Payment
+participant "Conferma Prenotazione" as Confirmation
+
+Utente -> Hotel: Cerca camera
+Hotel -> DB: Verifica disponibilità
+alt Camera disponibile
+    DB -> Hotel: Camera disponibile
+    Hotel -> Utente: Mostra dettagli camera
+    Utente -> Hotel: Conferma prenotazione
+    Hotel -> Payment: Invia dettagli pagamento
+    alt Pagamento riuscito
+        Payment -> Hotel: Conferma pagamento
+        Hotel -> Confirmation: Genera prenotazione
+        Confirmation -> Utente: Invio conferma
+    else Pagamento fallito
+        Payment -> Hotel: Errore pagamento
+        Hotel -> Utente: Notifica errore
+    end
+else Camera non disponibile
+    DB -> Hotel: Nessuna disponibilità
+    Hotel -> Utente: Notifica errore
+end
+@enduml

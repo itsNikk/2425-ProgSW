@@ -1,0 +1,6 @@
+@startuml
+[*] --> Rosso
+Rosso --> Verde : Timer scaduto
+Verde --> Giallo : Timer scaduto
+Giallo --> Rosso : Timer scaduto
+@enduml

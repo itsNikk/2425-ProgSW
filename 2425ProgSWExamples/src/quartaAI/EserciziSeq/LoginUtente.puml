@@ -1,0 +1,17 @@
+@startuml
+actor Utente
+participant "Pagina Login" as Login
+participant "Server Auth" as Auth
+participant "Dashboard" as Dashboard
+
+Utente -> Login: Inserisce credenziali
+Login -> Auth: Invia credenziali
+Auth -> Auth: Verifica credenziali
+alt Credenziali corrette
+    Auth -> Dashboard: Mostra dashboard
+    Dashboard -> Utente: Accesso consentito
+else Credenziali errate
+    Auth -> Login: Mostra errore
+    Login -> Utente: Notifica errore
+end
+@enduml
