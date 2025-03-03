@@ -1,0 +1,102 @@
+@startuml
+title CosmoPort CD
+
+
+' package principale
+package "CosmoPort" {
+   class CosmoPort {
+       - moduloImbarco: ModuloImbarco
+       - moduloLogistica: ModuloLogistica
+       - moduloManutenzione: ModuloManutenzione
+       + startOperations(): void
+       + addModule(): void
+       + removeModule(): void
+   }
+}
+
+' Modulo(package) Imbarco
+package "Modulo Imbarco" {
+   class ModuloImbarco {
+       + registrazioneViaggiatore(v: Viaggiatore): void
+       + checkIn(v: Viaggiatore): Pass
+   }
+   class Viaggiatore {
+       - id: String
+       - nome: String
+       - biometricData: String
+       + autenticazione(): boolean
+   }
+   class Pass {
+       - passId: String
+       - dataEmissione: Date
+   }
+   ModuloImbarco ..> Viaggiatore : gestisce
+   ModuloImbarco ..> Pass : emette
+}
+
+' Modulo Logistica
+package "Modulo Logistica" {
+   class ModuloLogistica {
+       + caricoMerci(c: Container): void
+       + scaricoMerci(c: Container): void
+       + notificaCentroControllo(centro : CentroControllo)
+       + bloccaOperazioniEmergenza(): void
+   }
+   class Container {
+       - id: String
+       - descrizione: String
+   }
+   class Sensore {
+       - id: String
+       - valore: double
+       + rilevaDati(): double
+   }
+   class CentroControllo {
+       + notificaEmergenza(msg: String): void
+   }
+   ModuloLogistica "1" o-- "1..N" Container : gestisce
+   ModuloLogistica "1" o-- "1..N" Sensore : integra dati da
+   ModuloLogistica ..> CentroControllo : notifica
+}
+
+' Modulo Manutenzione
+package "Modulo Manutenzione" {
+   class ModuloManutenzione {
+       - responsabile: ResponsabileManutenzione
+       + registraIntervento(i: Intervento): void
+   }
+   class ResponsabileManutenzione {
+       - squadre: List<Squadra>
+       - nome: String
+       - id: String
+       + assegnaSquadra(i: Intervento): void
+   }
+   class Tecnico {
+       - nome: String
+       - specializzazione: String
+   }
+   class Squadra {
+       - tecnici: List<Tecnico>
+       + aggiungiTecnico(t: Tecnico): void
+       + rimuoviTecnico(t: Tecnico): void
+   }
+   class Intervento {
+       - id: String
+       - descrizione: String
+       - data: Date
+       -squadraAssegnata: Squadra
+   }
+   ModuloManutenzione o-- ResponsabileManutenzione : coordinato da
+   ResponsabileManutenzione "1" --> "1..N" Squadra : gestisce
+   Squadra "1" o-- "4..10" Tecnico : composta
+   ModuloManutenzione ..> Intervento : registra
+}
+
+' Associazioni globali
+CosmoPort "1" *-- "1" ModuloImbarco : compostoDa
+CosmoPort "1" *-- "1" ModuloLogistica : compostoDa
+CosmoPort "1" *-- "1" ModuloManutenzione : compostoDa
+
+note right of CosmoPort : Sono utili i metodi add e remove in questa specirfica situazione?
+
+@enduml
