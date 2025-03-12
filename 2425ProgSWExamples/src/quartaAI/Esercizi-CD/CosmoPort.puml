@@ -31,7 +31,7 @@ package "Modulo Imbarco" {
        - dataEmissione: Date
    }
    ModuloImbarco ..> Viaggiatore : gestisce
-   ModuloImbarco ..> Pass : emette
+   ModuloImbarco ..> Pass : <<uses>>
 }
 
 ' Modulo Logistica
@@ -54,8 +54,8 @@ package "Modulo Logistica" {
    class CentroControllo {
        + notificaEmergenza(msg: String): void
    }
-   ModuloLogistica "1" o-- "1..N" Container : gestisce
-   ModuloLogistica "1" o-- "1..N" Sensore : integra dati da
+   ModuloLogistica "1" o-- "1..*" Container : gestisce
+   ModuloLogistica "1" o-- "1..*" Sensore : integra dati da
    ModuloLogistica ..> CentroControllo : notifica
 }
 

@@ -1,0 +1,46 @@
+@startuml
+
+package java.util{
+class Scanner{}
+}
+
+class Z{
+}
+
+class Y{
+    +{static} X()
+}
+
+X "1" --> "*" Z
+
+class PC{}
+class Cluster{
+    -pcs:List<PC>
+}
+
+''Aggregazione
+''X --o Y : "aggregazione"
+
+'composizione'
+Braccio --* Corpo : "composizione"
+
+''Molteplicità
+Cluster "1" o-- "2..*" PC
+abstract class X{
+    -l:List<Z>
+    +m(y:Y)
+    +{abstract}method():void
+}
+X "1" ..> "*" Y
+
+package Utilities{}
+
+interface Foo{
+    +{abstract}method():void
+}
+X ..|> Foo
+X ..> Utilities
+
+X ..> Scanner
+
+@enduml
