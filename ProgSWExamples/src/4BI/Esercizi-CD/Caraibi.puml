@@ -1,0 +1,39 @@
+@startuml
+abstract class Nave {
+    - nome: String
+    - equipaggio: int
+    - velocitàMassima: double
+    + interagisciCon(altraNave: Nave): void
+    + toString(): String
+}
+
+class NaveCommerciale {
+    - valoreCarico: double
+    + interagisciCon(altraNave: Nave): void
+}
+
+class NavePirata {
+    - potenzaCannoni: int
+    - bottino: double
+    + interagisciCon(altraNave: Nave): void
+}
+
+class NaveMarina {
+    - potenzaCannoni: int
+    - addestramentoEquipaggio: int
+    + interagisciCon(altraNave: Nave): void
+}
+
+exception CaricoRubatoException {}
+
+exception CannoneNonFunzionanteException {}
+
+exception NaveScortaNonDisponibileException {}
+
+NaveScortaNonDisponibileException --|> Java.lang.Exception
+CannoneNonFunzionanteException --|> Java.lang.Exception
+CaricoRubatoException --|> Java.lang.Exception
+Nave <|-- NaveCommerciale
+Nave <|-- NavePirata
+Nave <|-- NaveMarina
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+
+:Capitano: as Captain
+:Capitano Pirata: as PirateCaptain
+:Capitano Marina: as NavyCaptain
+:Equipaggio: as Crew
+:Amministratore della flotta": as FleetAdmin
+
+Captain <|-- PirateCaptain
+Captain <|-- NavyCaptain
+
+usecase "Pianificare una rotta" as PlanRoute
+usecase "Calcolare il rischio della rotta" as CalculateRouteRisk
+usecase "Definire una rotta d'emergenza" as EmergencyRoute
+
+usecase "Iniziare un attacco" as StartAttack
+usecase "Valutare la forza della nave nemica" as EvaluateEnemyStrength
+usecase "Contrattare la resa" as NegotiateSurrender
+
+usecase "Eseguire la manutenzione ordinaria" as RegularMaintenance
+usecase "Richiedere pezzi di ricambio" as RequestParts
+
+usecase "Verificare lo stato delle navi" as CheckShipsStatus
+usecase "Generare un rapporto sulle missioni completate" as GenerateMissionReport
+
+PlanRoute --> CalculateRouteRisk : <<include>>
+EmergencyRoute ..> PlanRoute : <<extend>>
+
+StartAttack ..> EvaluateEnemyStrength : <<include>>
+NegotiateSurrender ..> StartAttack : <<extend>>
+
+RegularMaintenance ..> RequestParts : <<extend>>
+
+CheckShipsStatus --> GenerateMissionReport : <<include>>
+
+Captain -- PlanRoute
+NavyCaptain -- EmergencyRoute
+PirateCaptain -- StartAttack
+PirateCaptain -- NegotiateSurrender
+Crew -- RegularMaintenance
+FleetAdmin -- CheckShipsStatus
+PirateCaptain -- EvaluateEnemyStrength
+
+@enduml

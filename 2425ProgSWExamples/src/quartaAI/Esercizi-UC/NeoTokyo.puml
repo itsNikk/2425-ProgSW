@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+:Consigliere: as c
+:CapoConsigliere: as cc
+:Sindaco: as s
+:Cittadino: as citt
+
+(Inviare comunicazioni di emergenza ai cittadini) as inv
+(convocare riunioni del Consiglio Comunale ) as conv
+(Organizzare colloqui privati con Sindaco) as vipColl
+(Rilascio permesso speciale) as specialAuth
+
+c --> inv
+citt -- inv
+
+c <|-- cc
+c -- conv
+
+cc --> vipColl
+s -- vipColl
+
+vipColl ..> specialAuth : <include>
+@enduml
