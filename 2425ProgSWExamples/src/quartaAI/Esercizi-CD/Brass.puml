@@ -1,0 +1,40 @@
+@startuml
+title Brass:Lancashire
+:mercato: as m
+:mercatoInterno: as mi
+:mercatoEstero: as me
+rectangle Brass {
+
+(UC1)
+'' usecase ID as "de1scrizione"
+usecase fabbrica as "
+fabbricare le risorse
+--
+E.P.: se fuoco presente
+"
+
+}
+:fabbrica: as b
+'' commento
+:industriale: as actor
+
+
+:A:
+:B:
+
+:A: --|> :B:
+
+:B: -- (UC1)
+:A: -- (qualcos'altro)
+(attivare macchinari) as mach
+
+fabbrica ..> mach : <<include>>
+(attiva sistema anticendio) as temp
+''stereotipo
+fabbrica <.. temp :<<extend>>
+b -- fabbrica
+
+actor --> (UC1)
+b -- (UC1)
+
+@enduml
