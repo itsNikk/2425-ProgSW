@@ -4,7 +4,7 @@ import Exception.quartaA.AssedioCastello.SiegeExceptions.MunizioniTerminateExcep
 
 class Catapulta {
     private final String name;
-    private static final int DANNO = 2; //solo per avere un danno standard...
+    private static final int DANNO = 2; //solo per avere un danno standard e non usare sempre le variabili...
     private int munizioni;
 
     public Catapulta(String name, int munizioni) {
