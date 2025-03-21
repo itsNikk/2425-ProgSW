@@ -15,7 +15,7 @@ class Soldato {
     }
 
     public boolean subisciDanno() {
-        if (Math.random() < 0.6) { // 30% di probabilità di essere ferito
+        if (Math.random() < 0.6) { // 60% di probabilità di essere ferito
             salute--;
             return salute <= 0; // Il soldato muore
         }
