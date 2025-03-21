@@ -1,13 +1,11 @@
 package Exception.quartaA.AssedioCastello;
 
-import java.util.Random;
-
 class Soldato {
     private static final int FORZA_ATTACCO = 1;
     private int salute;
 
     public Soldato() {
-        this.salute = 3; // Ogni soldato ha 3 punti vita
+        this.salute = 3;
     }
 
     public int attacca() {
