@@ -18,7 +18,7 @@ public class Main {
                 break;
             } catch (IngredientiException e) {
                 System.out.println(e.getMessage());
-            } catch (RIfornimentoException ri){
+            } catch (RIfornimentoException ri) {
                 System.out.println(ri.getMessage());
                 r.updateIngredienti(7);
             }
