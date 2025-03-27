@@ -3,10 +3,12 @@ package Exception.quartaB.Exceptions.SecretAlgorithm;
 import java.util.ArrayList;
 
 public class DataContainer {
+    private final int initialSize;
     private ArrayList<Integer> list1;
     private ArrayList<Integer> list2;
 
     public DataContainer(int initialSize) {
+        this.initialSize = initialSize;
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
 
@@ -31,16 +33,16 @@ public class DataContainer {
         int index2 = (int) (Math.floor(Math.random() * list2.size()));
 
         int tempElem = list1.get(index1);
-        list1.set(index1, list1.get(index2));
-        list1.set(index2, tempElem);
+        list1.set(index1, list2.get(index2));
+        list2.set(index2, tempElem);
 
     }
 
     public void corruptData() throws DataCorruptionException {
         if (list1.isEmpty() && list2.isEmpty())
-            throw new DataCorruptionException("Impossibile corrompere i dati. Le lsite sono vuote");
+            throw new DataCorruptionException("Impossibile corrompere i dati. Le liste sono vuote");
 
-        ArrayList<Integer> targetList = null;
+        ArrayList<Integer> targetList;
         if (Math.random() < 0.5) targetList = list1;
         else targetList = list2;
 
@@ -50,7 +52,7 @@ public class DataContainer {
         }
 
         //Calcolare percentuale corruzione dati
-        if (computeCorruptionRate(targetList) > 0.7)
+        if (computeCorruptionRate(targetList) > 0.4)
             throw new DataCorruptionException("Troppi dati corrotti nella lista!");
 
 
@@ -75,12 +77,12 @@ public class DataContainer {
     public void resetIfCorrupted() throws CriticalDataFailureException {
         if (computeCorruptionRate(list1) > 0.7) {
             list1.clear();
-            for (int i = 0; i < 5; i++) list1.add((int) (Math.random() * 100) + 1);
+            for (int i = 0; i < initialSize / 2; i++) list1.add((int) (Math.random() * 100) + 1);
             throw new CriticalDataFailureException("Lista 1 troppo corrotta, reset eseguito.");
         }
         if (computeCorruptionRate(list2) > 0.7) {
             list2.clear();
-            for (int i = 0; i < 5; i++) list2.add((int) (Math.random() * 100) + 1);
+            for (int i = 0; i < initialSize / 2; i++) list2.add((int) (Math.random() * 100) + 1);
             throw new CriticalDataFailureException("Lista 2 troppo corrotta, reset eseguito.");
         }
     }
