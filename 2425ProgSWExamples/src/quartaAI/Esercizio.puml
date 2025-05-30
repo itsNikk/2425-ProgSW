@@ -1,0 +1,8 @@
+@startuml
+:Stampante: as A1
+usecase stampare_fogli as U1
+usecase Rricarica as U2
+
+A1 --> U1
+U1 <.. U2 : "<<extend>>"
+@enduml

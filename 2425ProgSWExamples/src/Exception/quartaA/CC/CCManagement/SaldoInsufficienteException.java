@@ -1,4 +1,4 @@
-package Exception.quartaA.CC.CCManagement;
+package quartaA.CC.CCManagement;
 
 public class SaldoInsufficienteException extends Exception {
     public SaldoInsufficienteException(String message) {

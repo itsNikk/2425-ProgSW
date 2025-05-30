@@ -1,4 +1,4 @@
-package Exception.quartaA.CC.CCManagement;
+package quartaA.CC.CCManagement;
 
 public class CifraNegativaException extends Exception{
     public CifraNegativaException(String message) {

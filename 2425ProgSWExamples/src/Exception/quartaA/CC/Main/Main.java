@@ -1,8 +1,8 @@
-package Exception.quartaA.CC.Main;
+package quartaA.CC.Main;
 
-import Exception.quartaA.CC.CCManagement.CC;
-import Exception.quartaA.CC.CCManagement.CifraNegativaException;
-import Exception.quartaA.CC.CCManagement.SaldoInsufficienteException;
+import quartaA.CC.CCManagement.CC;
+import quartaA.CC.CCManagement.CifraNegativaException;
+import quartaA.CC.CCManagement.SaldoInsufficienteException;
 
 import java.util.Random;
 
