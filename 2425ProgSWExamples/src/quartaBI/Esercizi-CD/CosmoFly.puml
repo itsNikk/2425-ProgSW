@@ -1,0 +1,116 @@
+@startuml
+top to bottom direction
+
+:Clienti: as cl
+:ClientiVIP: as VIP
+:ClientiAziendali: as azCl
+:EnteRicerca: as er
+:Azienda: as az
+:Medico: as med
+:TecnicoDiTerra: as tecTerra
+:IABordo: as ia
+:AmministrazioneCentraleCF: as ACCF
+:Pilota: as p
+
+(Consultare catalogo viaggi) as ccv
+(Registrare cliente) as regc
+(Prenotare viaggio) as prenv
+(Cancellare prenotazione) as cancP
+(Modificare prenotazione) as modP
+(Gestione pagamento) as payServ
+(Gestione valutazione medica) as medCert
+(Login medico) as lgMed
+(Gestione appuntamenti medici) as gestAppuntamenti
+(Aggiornare stato idoneità) as updateIdoneita
+(Registrazione risultati test) as regRisTest
+(Login tecnico terra) as lgTecTerra
+''TODO: could be nice to add a note to this UC specifying a potential relationship between this a catalogue
+(Visionare dettagli volo) as detVol
+
+(Tracciare attività cliente) as trackC
+(Gestione personale) as gestPers
+(Inserimento membro personale) as insPers
+(Rimozione membro personale) as rimPers
+(Sospensione membro personale) as sosPers
+(Prenotare navette private) as privNav
+(Prenotazione consierge durante il volo) as assCons
+(Visualizzazione viaggi esclusivi) as exTravel
+
+(Prenotazione multipla) as multPre
+(Applicazione convenzione) as conv
+(Gestione pacchetto custom) as customPack
+
+(Ricezione notifiche malfunzionamenti) as recNot
+(Ricezione notifiche aggiornamento SW) as aggSW
+
+cl - ccv
+cl - regc
+cl - prenv
+cl - cancP
+cl - modP
+cl - detVol
+
+VIP - privNav
+VIP - assCons
+VIP - exTravel
+
+ccv <.. prenv : <<extend>>
+multPre <.. conv : <<extend>>
+customPack <.. conv : <<extend>>
+
+
+regc ..> trackC : <<include>>
+prenv ..> trackC : <<include>>
+prenv ..> payServ : <<include>>
+cancP ..> trackC : <<include>>
+modP ..> trackC : <<include>>
+detVol ..> trackC : <<include>>
+
+privNav ..> trackC : <<include>>
+assCons ..> trackC : <<include>>
+exTravel ..> trackC : <<include>>
+customPack ..> trackC : <<include>>
+conv ..> trackC : <<include>>
+multPre ..> trackC : <<include>>
+
+azCl - multPre
+azCl - conv
+azCl - customPack
+
+med - medCert
+medCert ..> gestAppuntamenti: <<extend>>
+med - lgMed
+med - gestAppuntamenti
+med - regRisTest
+med - updateIdoneita
+
+regRisTest <. updateIdoneita : <<extend>>
+
+tecTerra - lgTecTerra
+tecTerra - recNot
+tecTerra - aggSW
+ia -> recNot
+ia -> aggSW
+
+ia - (produzione notifiche)
+ia - (Monitorare stato nave)
+ia - (Aggiornamento SW)
+
+(Monitorare stato nave) <.. (produzione notifiche)
+
+ACCF - gestPers
+gestPers <.. rimPers :<<extend>>
+gestPers <.. sosPers :<<extend>>
+gestPers <.. insPers :<<extend>>
+
+p - (Visualizzazione missioni)
+p - (Visualizzazione dati passeggeri)
+p - (Compilazione report)
+
+prenv ...> medCert : <<include>>
+
+VIP --|> cl
+az --|> azCl
+er --|> azCl
+azCl --|> VIP
+@enduml
